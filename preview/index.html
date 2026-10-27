@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quattro · Logseq DB component preview</title>
-<link rel="stylesheet" href="/preview/layout.css"><link rel="stylesheet" href="/preview/import.css">
+<link rel="stylesheet" href="/preview/layout.css"><link rel="stylesheet" href="/preview/logseq-defaults.css"><link rel="stylesheet" href="/preview/import.css">
 </head>
 <body>
 <header id="head"><strong>Quattro / Logseq DB</strong><button id="theme-toggle" type="button">Switch to dark</button></header>
@@ -22,6 +22,18 @@
 <div class="ls-block"><span class="bullet">•</span><div>Use <code>custom.css</code> to make this space your own. <em>Keep it simple.</em></div></div>
 <div class="ls-block" id="library"><span class="bullet">•</span><div><h3>Reading list</h3><table><thead><tr><th>Note</th><th>Status</th></tr></thead><tbody><tr><td>On paying attention</td><td>Reading</td></tr><tr><td>The shape of an idea</td><td>To revisit</td></tr></tbody></table></div></div>
 <div class="ls-block"><span class="bullet">•</span><div><label for="editor">An editable thought</label><textarea id="editor" class="editor-inner" rows="2">Ideas take shape one block at a time.</textarea></div></div>
+<section class="yellow-samples" aria-label="Task status and reminders">
+<h3>Task status &amp; reminders</h3>
+<div data-yellow-fixture>
+<p><svg class="ls-icon-InProgress50" data-yellow-sample aria-label="In progress" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M8 2v12"/></svg> In progress</p>
+<p class="overdue" data-yellow-sample>Overdue: <span><a class="page-ref" data-yellow-sample href="#journal">Yesterday</a></span></p>
+<p><a class="warning" data-yellow-sample href="#references">Warning link</a> · <span class="text-warning" data-yellow-sample>Needs attention</span></p>
+<p class="ls-sync-conflict-warning" data-yellow-sample>Sync conflict to review</p>
+<p><svg class="note" data-yellow-sample aria-label="Note" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 2h10v12H3zM6 6h4M6 9h4"/></svg> Note · <svg class="ui__toast-status-icon warning" data-yellow-sample aria-label="Warning" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2 15 14H1zM8 6v4M8 12v1"/></svg> Reminder</p>
+</div>
+<div class="yellow-white-surface" data-yellow-white><span class="text-warning" data-yellow-sample>Yellow text on white</span></div>
+<p><mark>Highlighted text stays dark on yellow.</mark></p>
+</section>
 </div></article></main>
 <aside class="cp__right-sidebar" id="references"><div class="sidebar-item-header">LINKED REFERENCES</div><h3>Daily notes</h3><div class="block-content"><p>A connection back to <a class="page-ref" href="#writing">Writing as thinking</a>.</p><p><em>Leave a trail for your future self.</em></p></div></aside>
 </div>

@@ -19,6 +19,21 @@ const contrast = (a, b) => {
   const x = luminance(a), y = luminance(b);
   return (Math.max(x, y) + .05) / (Math.min(x, y) + .05);
 };
+// Composite translucent warning backgrounds over their actual ancestor surfaces.
+const yellowSamples = page => page.locator('[data-yellow-sample]').evaluateAll(elements => {
+  const rgba = value => {
+    const channels = value.match(/[\d.]+/g).map(Number);
+    return [...channels.slice(0, 3), channels[3] ?? 1];
+  };
+  const over = (front, back) => front.slice(0, 3).map((value, i) => value * front[3] + back[i] * (1 - front[3]));
+  return elements.map(element => {
+    const ancestors = [];
+    for (let node = element; node; node = node.parentElement) ancestors.unshift(node);
+    const background = ancestors.reduce((surface, node) => over(rgba(getComputedStyle(node).backgroundColor), surface), [255, 255, 255]);
+    const color = rgba(getComputedStyle(element).color);
+    return { color, foreground: over(color, background), background };
+  });
+});
 for (const mode of ['light', 'dark']) {
   test(`${mode}: fonts, tokens, text contrast, editing and links`, async () => {
     const page = await browser.newPage();
@@ -55,6 +70,30 @@ for (const mode of ['light', 'dark']) {
     assert.ok(contrast(state.fg, state.background) >= 7);
     assert.ok(contrast(state.muted, state.background) >= 4.5);
     assert.notEqual(state.rootBg, '192 100% 11%');
+    // page.goto waits for the imported distribution; verify its rules are loaded
+    // before toggling the stylesheet for the independent dark-mode baseline.
+    await page.waitForFunction(() => [...document.styleSheets].some(sheet =>
+      sheet.href?.endsWith('/preview/import.css') && sheet.cssRules[0]?.styleSheet?.cssRules.length));
+    await page.evaluate(() => {
+      document.querySelector('[data-yellow-white]').append(document.querySelector('[data-yellow-fixture]').cloneNode(true));
+    });
+    const themedYellow = await yellowSamples(page);
+    if (mode === 'light') {
+      for (const sample of themedYellow) {
+        assert.ok(contrast(sample.foreground, sample.background) >= 4.5,
+          `Yellow foreground ${sample.color} must contrast with surface ${sample.background}`);
+      }
+      const highlighted = await page.locator('mark').evaluate(el => ({ color: getComputedStyle(el).color, background: getComputedStyle(el).backgroundColor }));
+      assert.deepEqual(highlighted, { color: 'rgb(38, 38, 38)', background: 'rgb(254, 243, 172)' });
+    } else {
+      await page.locator('link[href="/preview/import.css"]').evaluate(el => { el.disabled = true; });
+      const defaultYellow = await yellowSamples(page);
+      assert.deepEqual(themedYellow.map(sample => sample.color), defaultYellow.map(sample => sample.color),
+        'The light-only contrast correction must preserve upstream dark yellow foregrounds');
+      await page.locator('link[href="/preview/import.css"]').evaluate(el => { el.disabled = false; });
+    }
+    await page.evaluate(() => document.querySelector('[data-yellow-white] [data-yellow-fixture]').remove());
+
     await page.locator('#editor').fill('A newly connected thought.');
     assert.equal(await page.locator('#editor').inputValue(), 'A newly connected thought.');
     await page.locator('.form-checkbox').first().check();

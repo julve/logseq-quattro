@@ -26,6 +26,7 @@ Use the DB graph's built-in CSS editor: DB graphs do not require a filesystem gr
 - Page titles, headings, references, tags, blockquotes, inline code, properties, tables, checkboxes, and editor typography.
 - System UI typography for navigation and property controls; native layout, icon fonts, and syntax colors stay under Logseq's control.
 - Visible keyboard focus and restrained link underlines.
+- Dark ochre foregrounds for light-mode yellow status icons, overdue dates, and warnings, with at least 4.5:1 text contrast on the tested light surfaces.
 
 To customize, append CSS after the theme, for example:
 

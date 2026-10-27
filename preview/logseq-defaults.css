@@ -1,0 +1,31 @@
+/* Selected Logseq DB defaults, modeled before the imported theme.
+   Source: common.css, components/{icon,block,property/value}.css,
+   shui/{radix,index}.css at the Logseq commit documented in README.md. */
+:root {
+  --rx-yellow-08: hsl(48, 100%, 46.1%);
+  --rx-yellow-10: hsl(50, 100%, 48.5%);
+  --rx-yellow-05-alpha: hsla(52, 99.9%, 49.5%, 0.357);
+  --rx-yellow-10-alpha: hsla(50, 100%, 48.4%, 0.980);
+}
+html[data-theme="dark"] {
+  --rx-yellow-08: hsl(50, 100%, 22%);
+  --rx-yellow-10: hsl(54, 100%, 68%);
+  --rx-yellow-07-alpha: hsla(51, 99.8%, 53.6%, 0.269);
+  --rx-yellow-10-alpha: hsla(56, 100%, 68.4%, 0.980);
+}
+.overdue, .overdue :not(.ls-datetime) .page-ref,
+svg.note, .ls-icon-InProgress50 { color: var(--rx-yellow-08); }
+a.warning, .ls-sync-conflict-warning {
+  color: var(--rx-yellow-08);
+  background-color: var(--rx-yellow-05-alpha);
+}
+.text-warning { color: #ca8a04; }
+.ui__toast-status-icon.warning { color: var(--rx-yellow-10-alpha); }
+html[data-theme="dark"] .overdue,
+html[data-theme="dark"] .overdue :not(.ls-datetime) .page-ref,
+html[data-theme="dark"] a.warning,
+html[data-theme="dark"] .ls-sync-conflict-warning { color: var(--rx-yellow-10); }
+html[data-theme="dark"] a.warning,
+html[data-theme="dark"] .ls-sync-conflict-warning { background-color: var(--rx-yellow-07-alpha); }
+html[data-theme="dark"] .text-warning { color: rgb(234 179 8 / 0.7); }
+mark { background: var(--ls-page-mark-bg-color, #fef3ac); color: var(--ls-page-mark-color, #262626); }
