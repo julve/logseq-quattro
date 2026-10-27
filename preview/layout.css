@@ -1,0 +1,24 @@
+/* Fixture geometry only. Product styling comes from custom.css. */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--quattro-font); }
+#head { display:flex; justify-content:space-between; align-items:center; padding:18px 26px; border-bottom:1px solid var(--lx-gray-05); }
+button { font:inherit; background:var(--lx-gray-03); color:var(--lx-gray-12); border:1px solid var(--lx-gray-06); border-radius:5px; padding:8px 12px; cursor:pointer; }
+.layout { display:grid; grid-template-columns:220px minmax(0,1fr) 280px; min-height:calc(100vh - 110px); }
+#left-sidebar, .cp__right-sidebar { padding:32px 24px; }
+#left-sidebar a { display:block; padding:9px 0; color:inherit; text-decoration:none; }
+.graph-name { font-weight:600; margin-bottom:28px; }
+small, .eyebrow, .sidebar-item-header { font-size:11px; letter-spacing:0.1em; color:var(--lx-gray-11); }
+#left-sidebar small { display:block; margin-top:40px; }
+.page { max-width:var(--quattro-content-width); margin:0 auto; padding:56px 48px; }
+h1 { margin:18px 0 28px; } h2 { font-size:1.3em; margin:12px 0; } h3 { font-size:1.05em; }
+.ls-page-properties { padding:14px 18px; margin-bottom:30px; font-size:13px; }
+.ls-page-properties > div { display:flex; gap:30px; padding:4px 0; }
+.property-key { width:50px; }
+.ls-block { display:flex; gap:12px; padding:6px 0; min-width:0; }
+.ls-block > div { min-width:0; }
+.bullet { color:var(--ls-block-bullet-color); }
+.children { border-left:1px solid var(--ls-block-left-color); margin-top:10px; padding-left:18px; }
+textarea { display:block; width:100%; background:var(--lx-gray-02); border:1px solid var(--lx-gray-06); padding:10px; border-radius:4px; margin-top:8px; }
+footer { padding:16px 26px; border-top:1px solid var(--lx-gray-05); color:var(--lx-gray-11); font:12px system-ui; }
+@media(max-width:1100px) { .layout { grid-template-columns:180px minmax(0,1fr); } .cp__right-sidebar { display:none; } }
+@media(max-width:640px) { .layout { display:block; } #left-sidebar { display:none; } .page { padding:30px 20px; } #head { padding:14px; gap:12px; } .block-content table { font-size:13px; } }

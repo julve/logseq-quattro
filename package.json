@@ -1,0 +1,14 @@
+{
+  "name": "logseq-quattro",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Quattro typography and neutral colors for Logseq DB",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "npm run build && node --test tests/*.test.mjs"
+  },
+  "engines": { "node": ">=22" },
+  "devDependencies": { "playwright": "1.58.2" }
+}

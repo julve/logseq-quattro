@@ -1,0 +1,2 @@
+/* Exercise the same loading mechanism used in Logseq's custom CSS editor. */
+@import url("/custom.css");
